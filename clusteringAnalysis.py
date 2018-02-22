@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
 sandy = np.array([-1,-1,-1,-1,1,1,0,-1,0,1,1,1,-1,0,1,-1,1,-1,-1,-1,1,1,-1,0,0])
 dee = np.array([-1,0,-1,-1,1,0,-1,-1,1,-1,1,-1,-1,1,1,-1,-1,-1,-1,1,-1,0,-1,1,1])
@@ -69,7 +70,6 @@ def iterateK(k):
         else:
 
             listK[closestk] = np.concatenate((listK[closestk],[person]))
-
     for i in range(len(listK)):
         # print("pre:",listK[i])
         if len(listK[i]) == 1:
@@ -82,9 +82,6 @@ def iterateK(k):
             # print("post:",k[i])
         else:
             newk[i]=k[i]
-
-
-
     return newk, cost
 
 def findkValues(numK,attributes):
@@ -110,11 +107,18 @@ def keepFindingValues(numK,attributes,iterations):
 
     return finalMatrix,finalCost
 if "__main__" == __name__:
-    comparePeople(0,1)
-    comparePeople(3,4)
-    comparePeople(2,7)
-    # num = 3
-    # for i in range(5):
-    #     matrix, cost = keepFindingValues(num,len(sandy),100)
-    #     getGroups(matrix,num)
-    #     print("-------------")
+    # comparePeople(0,1)
+    # comparePeople(3,4)
+    # comparePeople(2,7)
+    num = 1
+    costList = []
+    for i in range(8):
+        matrix, cost = keepFindingValues(num,len(sandy),100)
+        costList.append(cost)
+
+        num +=1
+        # getGroups(matrix,num)
+        # print("-------------")
+    plt.plot(costList)
+    plt.show()
+    # print(len(sandy))
